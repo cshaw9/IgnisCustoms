@@ -7,7 +7,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	c:RegisterEffect(e1)
-	-- The ATK / DEF of all “Polygod” monsters on the field become equal to the combined total of their current ATK / DEF.
+	-- The ATK / DEF of all “Polygod” monsters on the field become equal to the combined total of their original ATK / DEF.
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_SET_ATTACK_FINAL)
@@ -16,7 +16,7 @@ function s.initial_effect(c)
 	e2:SetTarget(aux.TargetBoolFunction(Card.IsSetCard,0xce1))
 	e2:SetValue(s.e2val)
 	c:RegisterEffect(e2)
-	--[[
+	
 	local e2b=Effect.CreateEffect(c)
 	e2b:SetType(EFFECT_TYPE_FIELD)
 	e2b:SetCode(EFFECT_SET_DEFENSE_FINAL)
@@ -25,7 +25,6 @@ function s.initial_effect(c)
 	e2b:SetTarget(aux.TargetBoolFunction(Card.IsSetCard,0xce1))
 	e2b:SetValue(s.e2bval)
 	c:RegisterEffect(e2b)
-	]]--
 	-- If a “Polygod” monster is destroyed by battle, banish both that destroyed monster and the monster that destroyed it.
 	local e3=Effect.CreateEffect(c)
 	e3:SetCategory(CATEGORY_REMOVE)
@@ -37,13 +36,13 @@ function s.initial_effect(c)
 	e3:SetOperation(s.e3evt)
 	c:RegisterEffect(e3)
 	--[[
-	SOPT
+	-- [FIX] : QUICK_O >> TRIGGER_O
+	[SOPT]
 	Once per turn, when a “Polygod” card(s) on the field is targeted by a card effect:
 	You can banish those targeted cards until the End Phase.
 	]]--
 	local e4=Effect.CreateEffect(c)
 	e4:SetCategory(CATEGORY_REMOVE)
-	-- QUICK_O >> TRIGGER_O [FIX]
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_BECOME_TARGET)
 	e4:SetRange(LOCATION_FZONE)
@@ -54,10 +53,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function s.e2val(e,c)
-	return c:GetAttack() + c:GetDefense()
+	return c:GetBaseAttack() + c:GetBaseDefense()
 end
 function s.e2bval(e,c)
-	return c:GetAttack() + c:GetDefense()
+	return c:GetBaseAttack() + c:GetBaseDefense()
 end
 function s.e3fil(c)
 	return c:IsSetCard(0xce1)

@@ -23,7 +23,8 @@ function s.initial_effect(c)
 		Duel.RegisterEffect(e1b,0)
 	end
 	--[[
-	[HOPT] [FIX] >> Maintain Chain Integrity
+	[FIX] : Maintain Chain Integrity
+	[HOPT]
 	If a “Polygod” monster's battle position is changed by a card effect, except “Canis, The Polygod Wolf”, while this card is in Attack Position,
 	you can: Immediately after this effect resolves, Normal Summon 2 “Polygod” monsters from your hand,
 	and if you do, change this card to face-up Defense Position.

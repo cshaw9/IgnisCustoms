@@ -23,6 +23,7 @@ function s.initial_effect(c)
 		Duel.RegisterEffect(e1b,0)
 	end
 	--[[
+	[FIX] : Only "Polygod" Synchro Monsters
 	[HOPT]
 	During your Main Phase, while this card is in Attack Position: You can target 1 “Polygod” monster you control;
 	change this card to face-up Defense Position,
@@ -65,6 +66,7 @@ function s.e2fil(c)
 	and c:IsSetCard(0xce1)
 	and c:IsType(TYPE_MONSTER)
 	and not c:IsType(TYPE_TUNER)
+	and not c:IsHasEffect(30765615)
 	and c:IsCanBeSynchroMaterial()
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -99,9 +101,9 @@ function s.e2evt(e,tp)
 			if req then
 				local e2b=Effect.CreateEffect(c)
 				e2b:SetType(EFFECT_TYPE_SINGLE)
-				e2b:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
-				e2b:SetCode(30765615) -- Code : 30765615
+				e2b:SetCode(30765615)
 				e2b:SetRange(LOCATION_MZONE)
+				e2b:SetProperty(EFFECT_FLAG_SINGLE_RANGE+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CLIENT_HINT)
 				e2b:SetValue(s.e2bval)
 				e2b:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 				tc:RegisterEffect(e2b)
