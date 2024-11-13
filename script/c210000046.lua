@@ -10,6 +10,14 @@ function s.initial_effect(c)
 	e0:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
 	e0:SetOperation(s.e0evt)
 	c:RegisterEffect(e0)
+
+	local e0b=Effect.CreateEffect(c)
+	e0b:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	e0b:SetCode(EVENT_CHAINING)
+	e0b:SetRange(LOCATION_FZONE)
+	e0b:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
+	e0b:SetOperation(s.e0evt)
+	c:RegisterEffect(e0b)
 	-- [Activation]
 	-- Activate this card by sending all monsters you control to the GY (min. 0).
 	local e1=Effect.CreateEffect(c)
@@ -82,14 +90,6 @@ function s.initial_effect(c)
 	e4:SetOperation(s.e4evt)
 	c:RegisterEffect(e4)
 end
-function s.e1cst(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return true end
-
-	local g=Duel.GetFieldGroup(tp,LOCATION_MZONE,0)
-	if g:GetCount()>0 then
-		Duel.SendtoGrave(g,REASON_COST)
-	end
-end
 function s.e0fil(c)
 	return c:IsFaceup()
 	and c:IsSetCard(0xce2b)
@@ -100,6 +100,14 @@ function s.e0evt(e,tp)
 	local g=Duel.GetMatchingGroup(s.e0fil,tp,LOCATION_ONFIELD,0,nil)
 	if g:GetClassCount(Card.GetCode)>=5 then
 		Duel.Win(tp,WIN_REASON_DESTINY_BOARD)
+	end
+end
+function s.e1cst(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+
+	local g=Duel.GetFieldGroup(tp,LOCATION_MZONE,0)
+	if g:GetCount()>0 then
+		Duel.SendtoGrave(g,REASON_COST)
 	end
 end
 function s.e3con(e)
