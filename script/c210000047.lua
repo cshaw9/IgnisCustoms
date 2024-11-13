@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e4:SetHintTiming(TIMING_STANDBY_PHASE)
+	e1:SetHintTiming(TIMING_STANDBY_PHASE)
 	e1:SetCondition(s.e1con)
 	c:RegisterEffect(e1)
 	-- Your opponent must pay 1000 LP to declare an attack.
