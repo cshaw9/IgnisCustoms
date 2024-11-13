@@ -41,6 +41,14 @@ function s.initial_effect(c)
 	e2c:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e2c:SetTargetRange(1,0)
 	c:RegisterEffect(e2c)
+
+	local e2d=Effect.CreateEffect(c)
+	e2d:SetType(EFFECT_TYPE_FIELD)
+	e2d:SetCode(EFFECT_CANNOT_MSET)
+	e2d:SetRange(LOCATION_FZONE)
+	e2d:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e2d:SetTargetRange(1,0)
+	c:RegisterEffect(e2d)
 	-- If this face-up card in the Field Zone is destroyed or banished: Send all Spell/Traps on the field to the GY.
 	local e3a=Effect.CreateEffect(c)
 	e3a:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
@@ -124,7 +132,7 @@ function s.e4evt(e,tp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
 	local g=Duel.SelectMatchingCard(tp,s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
 	if g:GetCount()>0 then
-		Duel.SSet(tp,g)
-		-- Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEDOWN,true)
+		--Duel.SSet(tp,g)
+		Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEDOWN,true)
 	end
 end
