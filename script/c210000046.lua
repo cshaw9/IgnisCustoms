@@ -91,7 +91,6 @@ end
 function s.e0evt(e,tp)
 	local g=Duel.GetMatchingGroup(s.e0fil,tp,LOCATION_ONFIELD,0,nil)
 	if g:GetClassCount(Card.GetCode)>=5 then
-		-- Duel.SetLP(1-tp, 0)
 		Duel.Win(tp,WIN_REASON_DESTINY_BOARD)
 	end
 end
@@ -132,11 +131,11 @@ end
 function s.e4tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		return Duel.IsExistingMatchingCard(s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil)
-		and Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)>0
+		and Duel.GetLocationCount(tp,LOCATION_SZONE)>=1
 	end
 end
 function s.e4evt(e,tp)
-	if Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)<1 then return end
+	if Duel.GetLocationCount(tp,LOCATION_SZONE)<1 then return end
 
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
 	local g=Duel.SelectMatchingCard(tp,s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
