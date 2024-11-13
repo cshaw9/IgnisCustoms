@@ -15,7 +15,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_SYNCHRO_LEVEL)
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE+EFFECT_FLAG_IGNORE_IMMUNE)
 	e1:SetValue(s.e1val)
 	c:RegisterEffect(e1)
 	--[[
@@ -59,11 +59,10 @@ function s.e1fil(c)
 	return c:IsType(TYPE_MONSTER)
 	and c:GetLevel()==4
 end
-function s.e1val(e,sc)
+function s.e1val(e,_,rc)
 	local c=e:GetHandler()
 	--sc:IsSetCard(0xce1)
-	local ov=c:GetOverlayGroup():Filter(s.e1fil, nil):GetCount()*4
-	return 4<<16|e:GetHandler():GetRank()
+	return c:GetOverlayGroup():Filter(s.e1fil, nil):GetCount()*4
 end
 function s.e2con(e)
 	return e:GetHandler():GetOverlayCount()==0
