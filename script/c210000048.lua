@@ -22,8 +22,8 @@ function s.initial_effect(c)
 	e2:SetRange(LOCATION_SZONE)
 	e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e2:SetTargetRange(0,1)
-	e2:SetCondition(s.e2con)
 	e2:SetCost(s.e2cst)
+	e2:SetTarget(s.e2tgt)
 	e2:SetOperation(s.e2evt)
 	c:RegisterEffect(e2)
 
@@ -52,7 +52,7 @@ function s.e1con(e,tp)
 	return tp~=Duel.GetTurnPlayer()
 	and Duel.GetCurrentPhase()==PHASE_STANDBY
 end
-function s.e2con(e,tp,eg,ep,ev,re)
+function s.e2tgt(e,tp,eg,ep,ev,re)
 	return re:IsActiveType(TYPE_SPELL)
 	and re:IsHasType(EFFECT_TYPE_ACTIVATE)
 end

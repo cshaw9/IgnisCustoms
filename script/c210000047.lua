@@ -52,9 +52,8 @@ function s.e1con(e,tp)
 	and Duel.GetCurrentPhase()==PHASE_STANDBY
 end
 function s.e2cst(e,c,tp)
-	local ct1=#{Duel.GetPlayerEffect(tp,id)}
-	local ct2=#{Duel.GetPlayerEffect(tp,82003859)} -- Toll
-	return Duel.CheckLPCost(tp,(ct1*1000)+(ct1*500))
+	local ct=#{Duel.GetPlayerEffect(tp,id)}
+	return Duel.CheckLPCost(tp,(ct1*1000))
 end
 function s.e2evt(e,tp)
 	if Duel.IsAttackCostPaid()~=2 and e:GetHandler():IsLocation(LOCATION_SZONE) then

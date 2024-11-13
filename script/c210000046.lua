@@ -125,7 +125,8 @@ function s.e4fil(c)
 	and not c:IsForbidden()
 end
 function s.e4con(e,tp)
-	return Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)>0
+	return tp==Duel.GetTurnPlayer()
+	and Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)>0
 end
 function s.e4tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
