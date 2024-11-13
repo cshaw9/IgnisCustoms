@@ -13,10 +13,10 @@ function s.initial_effect(c)
 	]]--
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_SYNCHRO_LEVEL)
+	e1:SetCode(EFFECT_SYNCHRO_MATERIAL_CUSTOM) -- EFFECT_SYNCHRO_LEVEL
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE+EFFECT_FLAG_IGNORE_IMMUNE)
-	e1:SetValue(s.e1val)
+	e1:SetProperty(EFFECT_FLAG_IGNORE_IMMUNE+EFFECT_FLAG_SINGLE_RANGE)
+	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)
 	--[[
 	If this face-up card on the field has no material, banish it.
@@ -63,6 +63,10 @@ function s.e1val(e,_,rc)
 	local c=e:GetHandler()
 	--sc:IsSetCard(0xce1)
 	return c:GetOverlayGroup():Filter(s.e1fil, nil):GetCount()*4
+end
+function s.e1evt(e,tg,ntg,sg,lv,sc,tp)
+	local ov=e:GetHandler():GetOverlayGroup():Filter(s.e1fil, nil):GetCount()*4
+	return sc:IsSetCard(0xce1) and (sum+ov==lv),true
 end
 function s.e2con(e)
 	return e:GetHandler():GetOverlayCount()==0
