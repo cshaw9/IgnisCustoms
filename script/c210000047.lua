@@ -12,6 +12,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
+	e4:SetHintTiming(TIMING_STANDBY_PHASE)
 	e1:SetCondition(s.e1con)
 	c:RegisterEffect(e1)
 	-- Your opponent must pay 1000 LP to declare an attack.
@@ -52,7 +53,7 @@ function s.e1con(e,tp)
 end
 function s.e2cst(e,c,tp)
 	local ct1=#{Duel.GetPlayerEffect(tp,id)}
-	local ct2=#{Duel.GetPlayerEffect(tp,82003859)}
+	local ct2=#{Duel.GetPlayerEffect(tp,82003859)} -- Toll
 	return Duel.CheckLPCost(tp,(ct1*1000)+(ct1*500))
 end
 function s.e2evt(e,tp)

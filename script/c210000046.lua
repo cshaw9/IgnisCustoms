@@ -123,16 +123,21 @@ function s.e4fil(c)
 	and c:IsType(TYPE_CONTINUOUS)
 	and not c:IsForbidden()
 end
+function s.e4con(e,tp)
+	return Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)>0
+end
 function s.e4tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		return Duel.IsExistingMatchingCard(s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil)
+		and Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)>0
 	end
 end
 function s.e4evt(e,tp)
+	if Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)<1 then return end
+
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
 	local g=Duel.SelectMatchingCard(tp,s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
 	if g:GetCount()>0 then
-		--Duel.SSet(tp,g)
 		Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEDOWN,true)
 	end
 end
