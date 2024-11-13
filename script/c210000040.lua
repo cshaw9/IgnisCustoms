@@ -56,7 +56,7 @@ function s.c210000044tgt(e,c)
 	return res
 end
 function s.c210000044val(e,_,rc)
-	return rc==e:GetHandler() and e:GetLabel() or 0
+	return rc==e:GetHandler() and 4 or 0
 end
 function s.e1con(e,tp,eg,ep,ev,re)
 	if e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) or not Duel.IsChainNegatable(ev) then return false end
