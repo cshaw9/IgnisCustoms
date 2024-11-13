@@ -54,7 +54,6 @@ function s.e1con(e,tp)
 end
 function s.e2tgt(e,re)
 	return re:IsActiveType(TYPE_MONSTER)
-	and re:IsHasType(EFFECT_TYPE_ACTIVATE)
 end
 function s.e2cst(e,c,tp)
 	local ct=#{Duel.GetPlayerEffect(tp,id)}
