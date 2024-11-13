@@ -53,7 +53,7 @@ function s.e1con(e,tp)
 end
 function s.e2cst(e,c,tp)
 	local ct=#{Duel.GetPlayerEffect(tp,id)}
-	return Duel.CheckLPCost(tp,(ct1*1000))
+	return Duel.CheckLPCost(tp,(ct*1000))
 end
 function s.e2evt(e,tp)
 	if Duel.IsAttackCostPaid()~=2 and e:GetHandler():IsLocation(LOCATION_SZONE) then
