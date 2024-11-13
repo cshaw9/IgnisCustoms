@@ -7,7 +7,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	c:RegisterEffect(e1)
-	-- The ATK / DEF of all “Polygod” monsters on the field become equal to the combined total of their original ATK / DEF.
+	-- The original ATK / DEF of all “Polygod” monsters on the field become equal to the combined total of their original ATK / DEF.
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_SET_ATTACK)
