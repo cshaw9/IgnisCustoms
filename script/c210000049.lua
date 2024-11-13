@@ -52,7 +52,7 @@ function s.e1con(e,tp)
 	return tp~=Duel.GetTurnPlayer()
 	and Duel.GetCurrentPhase()==PHASE_STANDBY
 end
-function s.e2con(e,tp,eg,ep,ev,re)
+function s.e2tgt(e,tp,eg,ep,ev,re)
 	return re:IsActiveType(TYPE_TRAP)
 	and re:IsHasType(EFFECT_TYPE_ACTIVATE)
 end
