@@ -99,7 +99,8 @@ end
 function s.e0evt(e,tp)
 	local g=Duel.GetMatchingGroup(s.e0fil,tp,LOCATION_ONFIELD,0,nil)
 	if g:GetClassCount(Card.GetCode)>=5 then
-		Duel.Win(tp,WIN_REASON_DESTINY_BOARD)
+		Debug.ShowHint("WIN")
+		--Duel.Win(tp,WIN_REASON_DESTINY_BOARD)
 	end
 end
 function s.e1cst(e,tp,eg,ep,ev,re,r,rp,chk)
