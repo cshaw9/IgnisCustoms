@@ -5,6 +5,16 @@ function s.initial_effect(c)
 	-- 1 “Polygod” Tuner + 1+ non-Tuner monsters
 	Synchro.AddProcedure(c,aux.FilterBoolFunctionEx(Card.IsSetCard,0xce1),1,1,Synchro.NonTuner(nil),1,99)
 	c:EnableReviveLimit()
+	-- #210000044
+	local e210000044=Effect.CreateEffect(c)
+	e210000044:SetType(EFFECT_TYPE_FIELD)
+	e210000044:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_IGNORE_IMMUNE)
+	e210000044:SetCode(EFFECT_SYNCHRO_LEVEL)
+	e210000044:SetRange(LOCATION_EXTRA)
+	e210000044:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e210000044:SetTarget(s.c210000044tgt)
+	e210000044:SetValue(s.c210000044val)
+	c:RegisterEffect(e210000044)
 	--[[
 	When a card or effect is activated that would destroy a card(s) on the field (Quick Effect):
 	You can banish this card; negate the activation, and if you do, banish it. 
@@ -33,6 +43,20 @@ function s.initial_effect(c)
 	e2:SetTarget(s.e2tgt)
 	e2:SetOperation(s.e2evt)
 	c:RegisterEffect(e2)
+end
+function s.c210000044fil(c)
+	return c:IsType(TYPE_MONSTER)
+	and c:GetLevel()==4
+end
+function s.c210000044tgt(e,c)
+	local res=c:IsCode(210000044)
+	if res then
+		e:SetLabel(c:GetOverlayGroup():Filter(s.c210000044fil, nil):GetCount()*4)
+	end
+	return res
+end
+function s.c210000044val(e,_,rc)
+	return rc==e:GetHandler() and e:GetLabel() or 0
 end
 function s.e1con(e,tp,eg,ep,ev,re)
 	if e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) or not Duel.IsChainNegatable(ev) then return false end
