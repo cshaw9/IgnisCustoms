@@ -56,7 +56,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	
-	local sg=g:Select(g,tp,1,1,nil)
+	local sg=g:Select(tp,1,1,nil)
 	local code=g:GetFirst():GetOriginalCode()
 	e:SetLabel(code)
 	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
@@ -76,6 +76,38 @@ function s.e1evt(e)
 	c:RegisterEffect(e1b)
 
 	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
+
+	local e1a1=Effect.CreateEffect(c)
+	e1a1:SetType(EFFECT_TYPE_FIELD)
+	e1a1:SetCode(EFFECT_CANNOT_SUMMON)
+	e1a1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1a1:SetTargetRange(1,0)
+	e1a1:SetReset(RESET_PHASE+PHASE_END,2)
+	Duel.RegisterEffect(e1a1,tp)
+
+	local e1a2=Effect.CreateEffect(c)
+	e1a2:SetType(EFFECT_TYPE_FIELD)
+	e1a2:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
+	e1a2:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1a2:SetTargetRange(1,0)
+	e1a2:SetReset(RESET_PHASE+PHASE_END,2)
+	Duel.RegisterEffect(e1a2,tp)
+
+	local e1a3=Effect.CreateEffect(c)
+	e1a3:SetType(EFFECT_TYPE_FIELD)
+	e1a3:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	e1a3:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1a3:SetTargetRange(1,0)
+	e1a3:SetReset(RESET_PHASE+PHASE_END,2)
+	Duel.RegisterEffect(e1a3,tp)
+
+	local e1a4=Effect.CreateEffect(c)
+	e1a4:SetType(EFFECT_TYPE_FIELD)
+	e1a4:SetCode(EFFECT_CANNOT_MSET)
+	e1a4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1a4:SetTargetRange(1,0)
+	e1a4:SetReset(RESET_PHASE+PHASE_END,2)
+	Duel.RegisterEffect(e1a4,tp)
 end
 function s.e2con(e)
 	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_ONFIELD,0)==0
