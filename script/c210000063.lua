@@ -60,7 +60,8 @@ function s.e1evt(e,tp)
 	end
 end
 function s.e2con(e,tp)
-	Duel.GetAttacker():IsControler(1-tp) and Duel.GetAttackTarget()==nil
+	return Duel.GetAttacker():IsControler(1-tp)
+	and Duel.GetAttackTarget()==nil
 end
 function s.e2cst(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
