@@ -62,8 +62,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function s.e1tgt(e,c)
-	local tp=e:GetHandlerPlayer()
-	return Duel.IsPlayerCanRemove(tp,c)
+	return Duel.IsPlayerCanRemove(e:GetHandlerPlayer(),c)
 end
 function s.e2con(e,tp)
 	return Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsCode,210000072),tp,LOCATION_MZONE,0,1,nil)

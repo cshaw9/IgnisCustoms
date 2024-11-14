@@ -19,7 +19,6 @@ function s.initial_effect(c)
 	During your Draw Phase, while this card is banished, instead of conducting your normal draw: You can draw 2 cards.
 	]]--
 	local e2=Effect.CreateEffect(c)
-	e2:SetCategory(CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_PREDRAW)
 	e2:SetRange(LOCATION_REMOVED)
@@ -63,13 +62,13 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local dt=Duel.GetDrawCount(tp)
 
 	if dt~=0 then
-		local e1=Effect.CreateEffect(c)
-		e1:SetType(EFFECT_TYPE_FIELD)
-		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-		e1:SetCode(EFFECT_DRAW_COUNT)
-		e1:SetTargetRange(1,0)
-		e1:SetReset(RESET_PHASE+PHASE_DRAW)
-		e1:SetValue(2)
-		Duel.RegisterEffect(e1,tp)
+		local e2b=Effect.CreateEffect(c)
+		e2b:SetType(EFFECT_TYPE_FIELD)
+		e2b:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+		e2b:SetCode(EFFECT_DRAW_COUNT)
+		e2b:SetTargetRange(1,0)
+		e2b:SetReset(RESET_PHASE+PHASE_DRAW)
+		e2b:SetValue(2)
+		Duel.RegisterEffect(e2b,tp)
 	end
 end
