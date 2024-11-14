@@ -54,7 +54,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local g=Duel.SelectTarget(tp,s.e1fil1,tp,0,LOCATION_ONFIELD,1,1,nil,tp)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,1,tp,0)
 end
-function s.e1evt(e)
+function s.e1evt(e,tp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
 		local c=e:GetHandler()
