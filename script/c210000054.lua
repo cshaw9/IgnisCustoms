@@ -26,28 +26,16 @@ function s.initial_effect(c)
 		end)
 		Duel.RegisterEffect(eg1,0)
 
-		local eg2=Effect.CreateEffect(c)
-		eg2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		local eg2=eg1:Clone()
 		eg2:SetCode(EVENT_SUMMON)
-		eg2:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
-			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
-		end)
 		Duel.RegisterEffect(eg2,0)
 
-		local eg3=Effect.CreateEffect(c)
-		eg3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		local eg3=eg1:Clone()
 		eg3:SetCode(EVENT_SPSUMMON)
-		eg3:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
-			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
-		end)
 		Duel.RegisterEffect(eg3,0)
 
-		local eg4=Effect.CreateEffect(c)
-		eg4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		local eg4=eg1:Clone()
 		eg4:SetCode(EVENT_FLIP_SUMMON)
-		eg4:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
-			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
-		end)
 		Duel.RegisterEffect(eg4,0)
 	end)
 	--[[
@@ -78,7 +66,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if e:GetHandler():IsLocation(LOCATION_HAND) then z=z-1 end
 
 	if chk==0 then
-		return Duel.IsExistingMatchingCard(s.e1fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil,tp)
+		return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.e1fil),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil,tp)
 		and z>0
 	end
 end
@@ -93,34 +81,22 @@ function s.e1evt(e,tp)
 	e1a1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1a1,tp)
 
-	local e1a2=Effect.CreateEffect(c)
-	e1a2:SetType(EFFECT_TYPE_FIELD)
+	local e1a2=e1a1:Clone()
 	e1a2:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
-	e1a2:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e1a2:SetTargetRange(1,0)
-	e1a2:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1a2,tp)
 
-	local e1a3=Effect.CreateEffect(c)
-	e1a3:SetType(EFFECT_TYPE_FIELD)
+	local e1a3=e1a1:Clone()
 	e1a3:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-	e1a3:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e1a3:SetTargetRange(1,0)
-	e1a3:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1a3,tp)
 
-	local e1a4=Effect.CreateEffect(c)
-	e1a4:SetType(EFFECT_TYPE_FIELD)
+	local e1a4=e1a1:Clone()
 	e1a4:SetCode(EFFECT_CANNOT_MSET)
-	e1a4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e1a4:SetTargetRange(1,0)
-	e1a4:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1a4,tp)
 
 	if Duel.GetLocationCount(tp,LOCATION_SZONE)<1 then return end
 
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local g=Duel.SelectMatchingCard(tp,s.e1fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tp)
+	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.e1fil),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tp)
 	if g:GetCount()>0 then
 		Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEUP,true)
 	end

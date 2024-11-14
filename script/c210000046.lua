@@ -26,28 +26,16 @@ function s.initial_effect(c)
 	e2a:SetTargetRange(1,0)
 	c:RegisterEffect(e2a)
 
-	local e2b=Effect.CreateEffect(c)
-	e2b:SetType(EFFECT_TYPE_FIELD)
+	local e2b=e2a:Clone()
 	e2b:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
-	e2b:SetRange(LOCATION_FZONE)
-	e2b:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e2b:SetTargetRange(1,0)
 	c:RegisterEffect(e2b)
 
-	local e2c=Effect.CreateEffect(c)
-	e2c:SetType(EFFECT_TYPE_FIELD)
+	local e2c=e2a:Clone()
 	e2c:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-	e2c:SetRange(LOCATION_FZONE)
-	e2c:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e2c:SetTargetRange(1,0)
 	c:RegisterEffect(e2c)
 
-	local e2d=Effect.CreateEffect(c)
-	e2d:SetType(EFFECT_TYPE_FIELD)
+	local e2d=e2a:Clone()
 	e2d:SetCode(EFFECT_CANNOT_MSET)
-	e2d:SetRange(LOCATION_FZONE)
-	e2d:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e2d:SetTargetRange(1,0)
 	c:RegisterEffect(e2d)
 	-- If this face-up card in the Field Zone is destroyed or banished: Send all Spell/Traps on the field to the GY.
 	local e3a=Effect.CreateEffect(c)
@@ -59,13 +47,8 @@ function s.initial_effect(c)
 	e3a:SetOperation(s.e3evt)
 	c:RegisterEffect(e3a)
 
-	local e3b=Effect.CreateEffect(c)
-	e3b:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	local e3b=e3a:Clone()
 	e3b:SetCode(EVENT_REMOVE)
-	e3b:SetProperty(EFFECT_FLAG_DELAY)
-	e3b:SetCondition(s.e3con)
-	e3b:SetTarget(s.e3tgt)
-	e3b:SetOperation(s.e3evt)
 	c:RegisterEffect(e3b)
 	--[[
 	[SOPT]
@@ -127,7 +110,7 @@ function s.e4con(e,tp)
 end
 function s.e4tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		return Duel.IsExistingMatchingCard(s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil)
+		return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.e4fil),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil)
 		and Duel.GetLocationCount(tp,LOCATION_SZONE)>=1
 	end
 end
@@ -135,7 +118,7 @@ function s.e4evt(e,tp)
 	if Duel.GetLocationCount(tp,LOCATION_SZONE)<1 then return end
 
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local g=Duel.SelectMatchingCard(tp,s.e4fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.e4fil),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
 	if g:GetCount()>0 then
 		Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEDOWN,true)
 	end
