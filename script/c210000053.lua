@@ -32,12 +32,11 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 
 	local max=Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)
 	if max>(g:GetCount()+1) then
-		max=g:GetCount()
+		max=g:GetCount()+1
 	end
-
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	
-	local sel=g:Select(tp,1,max,nil)
+	local sel=g:Select(tp,1,max-1,nil)
 	sel:KeepAlive()
 	e:SetLabelObject(sel)
 
