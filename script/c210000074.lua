@@ -48,8 +48,6 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			g:AddCard(c)
 			g:AddCard(eg:GetFirst())
 			g:KeepAlive()
-
-			c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN,0,1)
 			
 			local e2=Effect.CreateEffect(c)
 			e2:SetCategory(CATEGORY_TOHAND)
@@ -62,6 +60,7 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			e2:SetTarget(s.e2tgt)
 			e2:SetOperation(s.e2evt)
 			e2:SetLabelObject(g)
+			e2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN)
 			c:RegisterEffect(e2)
 		end
 	end
@@ -71,7 +70,6 @@ function s.e2con(e,tp)
 
 	return c:GetTurnID()~=Duel.GetTurnCount()
 	and tp==Duel.GetTurnPlayer()
-	and c:GetFlagEffect(id)>0
 end
 function s.e2cst(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
@@ -84,15 +82,12 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=e:GetLabelObject()
 
 	if chk==0 then
-		Debug.ShowHint("G: "..g:GetCount().." R: "..g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount())
 		return g:GetCount()==g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount()
 	end
 	
 	local c=e:GetHandler()
 
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,0,0)
-
-	c:ResetFlagEffect(id)
 end
 function s.e2evt(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
