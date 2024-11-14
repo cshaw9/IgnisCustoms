@@ -108,6 +108,8 @@ function s.e1evt(e,tp)
 	e1b:SetValue(code)
 	c:RegisterEffect(e1b)
 
+	Debug.ShowHint(""..code)
+
 	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
 end
 function s.e2con(e)
