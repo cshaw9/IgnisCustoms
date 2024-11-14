@@ -102,7 +102,7 @@ function s.e3evt(e)
 		e3b:SetProperty(EFFECT_FLAG_CLIENT_HINT)
 		e3b:SetValue(s.e3val)
 		e3b:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
-		c:RegisterEffect(e3b)
+		tc:RegisterEffect(e3b)
 	end
 end
 function s.e3val(e,re)
