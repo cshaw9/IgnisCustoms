@@ -83,6 +83,8 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function s.e1evt(e,tp)
+	local c=e:GetHandler()
+
 	local e1a=Effect.CreateEffect(c)
 	e1a:SetType(EFFECT_TYPE_FIELD)
 	e1a:SetCode(EFFECT_CANNOT_SUMMON)
