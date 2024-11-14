@@ -60,6 +60,7 @@ function s.initial_effect(c)
 	e4:SetCost(s.e4cst)
 	e4:SetTarget(s.e4tgt)
 	e4:SetOperation(s.e4evt)
+	c:RegisterEffect(e4)
 end
 function s.e1tgt(e,c)
 	local tp=e:GetHandlerPlayer()
