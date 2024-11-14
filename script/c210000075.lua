@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e3:SetCode(EVENT_REMOVE)
 	e3:SetRange(LOCATION_FZONE)
+	e3:SetCondition(s.e3con)
 	e3:SetOperation(s.e3evt)
 	c:RegisterEffect(e3)
 	--[[
@@ -32,6 +33,7 @@ function s.initial_effect(c)
 	shuffle those targets into the Deck/Extra Deck.
 	]]--
 	local e4=Effect.CreateEffect(c)
+	e4:SetDescription(aux.Stringid(id,0))
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_FZONE)
 	e4:SetCountLimit(1,(id+0))
@@ -45,6 +47,7 @@ function s.initial_effect(c)
 	You can remove 1 Banishite Counter from this card; draw 1 card.
 	]]--
 	local e5=Effect.CreateEffect(c)
+	e5:SetDescription(aux.Stringid(id,1))
 	e5:SetCategory(CATEGORY_DRAW)
 	e5:SetType(EFFECT_TYPE_IGNITION)
 	e5:SetRange(LOCATION_FZONE)
@@ -56,6 +59,9 @@ function s.initial_effect(c)
 end
 function s.e2tgt(e,c)
 	return Duel.IsPlayerCanRemove(e:GetHandlerPlayer(),c)
+end
+function s.e3con(e)
+	return e:GetHandler():GetCounter(0x34)<5
 end
 function s.e3evt(e)
 	e:GetHandler():AddCounter(0x34,1)
