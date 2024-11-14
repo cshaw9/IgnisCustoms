@@ -41,7 +41,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabelObject(sel)
 
 	Duel.ConfirmCards(1-tp,sel)
-	Debug.ShowHint(max-1)
+	Debug.ShowHint(""..(max-1))
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,max)
 end
 function s.e1evt(e,tp)
