@@ -50,7 +50,9 @@ function s.e2fil(c,tp)
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		eg:IsExists(s.e2fil,1,nil,tp)
+		return (r&REASON_EFFECT)~=0
+		and re
+		and eg:IsExists(s.e2fil,1,nil,tp)
 	end
 	
 	local c=e:GetHandler()
