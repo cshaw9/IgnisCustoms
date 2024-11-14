@@ -61,7 +61,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabel(code)
 	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 end
-function s.e1evt(e,tp)
+function s.e1evt(e)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 
@@ -78,7 +78,7 @@ function s.e1evt(e,tp)
 	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
 end
 function s.e2con(e,tp)
-	Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)==0
+	return Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)==0
 end
 function s.e3fil(c)
 	return c:IsAbleToGrave(e)
