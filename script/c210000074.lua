@@ -81,7 +81,7 @@ function s.e2cst(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=e:GetLabelObject()
-
+	Debug.ShowHint("G: "..g:GetCount().." R: "..g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount())
 	if chk==0 then
 		return g:GetCount()==g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount()
 	end
