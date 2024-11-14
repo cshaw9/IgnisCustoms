@@ -74,6 +74,37 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 			e2b1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 			tc:RegisterEffect(e2b1)
 			tc:RegisterFlagEffect(id,RESET_EVENT|RESETS_STANDARD&~RESET_TOHAND+RESET_PHASE+PHASE_END,0,1)
+
+			local e2c1=Effect.CreateEffect(c)
+			e2c1:SetType(EFFECT_TYPE_FIELD)
+			e2c1:SetCode(EFFECT_CANNOT_SUMMON)
+			e2c1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+			e2c1:SetTargetRange(1,0)
+			e2c1:SetTarget(s.e2clim1)
+			e2c1:SetLabel(tc:GetCode())
+			e2c1:SetReset(RESET_PHASE+PHASE_END)
+			Duel.RegisterEffect(e2c1,tp)
+
+			local e2c2=e2c1:Clone()
+			e2c2:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+			Duel.RegisterEffect(e2c2,tp)
+
+			local e2c3=e2c1:Clone()
+			e2c3:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
+			Duel.RegisterEffect(e2c3,tp)
+			
+			local e2c4=e2c1:Clone()
+			e2c4:SetCode(EFFECT_CANNOT_MSET)
+			Duel.RegisterEffect(e2c4,tp)
+			
+			local e2c5=e2c1:Clone()
+			e2c5:SetCode(EFFECT_CANNOT_ACTIVATE)
+			e2c5:SetValue(s.e2clim2)
+			Duel.RegisterEffect(e2c5,tp)
+
+			local e2c6=e2c1:Clone()
+			e2c6:SetCode(EFFECT_CANNOT_SSET)
+			Duel.RegisterEffect(e2c6,tp)
 		end
 		
 		local e2b2=Effect.CreateEffect(c)
@@ -104,4 +135,10 @@ function s.e2bevt(e,tp,eg)
 
 	Duel.ConfirmCards(1-tp,g)
 	Duel.ShuffleHand(tp)
+end
+function s.e2clim1(e,c)
+	return c:IsCode(e:GetLabel())
+end
+function s.e2clim2(e,re,tp)
+	return re:GetHandler():IsCode(e:GetLabel())
 end
