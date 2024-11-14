@@ -48,7 +48,7 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			g:AddCard(c)
 			g:AddCard(eg:GetFirst())
 
-			c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
+			c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN,0,1)
 			
 			local e2=Effect.CreateEffect(c)
 			e2:SetCategory(CATEGORY_TOHAND)
@@ -60,12 +60,12 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			e2:SetTarget(s.e2tgt)
 			e2:SetOperation(s.e2evt)
 			e2:SetLabelObject(g)
-			e2:SetReset(RESET_PHASE+PHASE_STANDBY,1)
+			e2:SetReset(RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN,1)
 			c:RegisterEffect(e2)
 		end
 	end
 end
-function s.e2con(e)
+function s.e2con(e,tp)
 	local c=e:GetHandler()
 
 	return c:GetTurnID()~=Duel.GetTurnCount()
@@ -81,7 +81,7 @@ function s.e2cst(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=e:GetLabelObject()
-	Debug.ShowHint("G: "..g:GetCount().." R: "..g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount())
+
 	if chk==0 then
 		return g:GetCount()==g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount()
 	end
