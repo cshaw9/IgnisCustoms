@@ -62,7 +62,6 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			e2:SetTarget(s.e2tgt)
 			e2:SetOperation(s.e2evt)
 			e2:SetLabelObject(g)
-			e2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN,1)
 			c:RegisterEffect(e2)
 		end
 	end
@@ -92,11 +91,12 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,0,0)
+
+	c:ResetFlagEffect(id)
 end
 function s.e2evt(e,tp,eg,ep,ev,re,r,rp)
-	c:ResetFlagEffect(id)
-
 	local c=e:GetHandler()
+
 	if c:IsRelateToEffect(e) then
 		Duel.SendtoHand(e:GetLabelObject(),nil,REASON_EFFECT)
 	end
