@@ -45,6 +45,8 @@ function s.e1val(e,dp)
 	end
 end
 function s.e2con(e)
+	local c=e:GetHandler()
+	
 	return not c:IsLocation(LOCATION_REMOVED)
 	and c:IsAbleToRemove()
 end
