@@ -25,7 +25,7 @@ function s.initial_effect(c)
 	]]--
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e2:SetCode(EFFECT_REMOVE_REDIRECT)
+	e2:SetCode(EFFECT_SEND_REPLACE)--EFFECT_REMOVE_REDIRECT
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetTarget(s.e2tgt)
 	e2:SetValue(s.e2val)
@@ -50,9 +50,7 @@ function s.e2fil(c,tp)
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		return (r&REASON_EFFECT)~=0
-		and re
-		and eg:IsExists(s.e2fil,1,nil,tp)
+		eg:IsExists(s.e2fil,1,nil,tp)
 	end
 	
 	local c=e:GetHandler()
@@ -101,7 +99,7 @@ function s.e2bcon(e,tp,eg)
 end
 function s.e2bevt(e,tp,eg)
 	local g=eg:Filter(s.e2bfil,nil)
-	
+
 	Duel.ConfirmCards(1-tp,g)
 	Duel.ShuffleHand(tp)
 end
