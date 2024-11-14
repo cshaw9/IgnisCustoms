@@ -79,7 +79,7 @@ function s.e2evt(e,tp)
 end
 function s.e3fil(c,e,tp)
 	return c:IsCode(210000064)
-	c:IsCanBeSpecialSummoned(e,0,tp,true,false,POS_FACEUP_ATTACK)
+	and c:IsCanBeSpecialSummoned(e,0,tp,true,false,POS_FACEUP_ATTACK)
 end
 function s.e3tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
