@@ -113,7 +113,7 @@ function s.e2con(e)
 	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_ONFIELD,0)==0
 end
 function s.e3fil(c)
-	return c:IsAbleToGrave(e)
+	return c:IsAbleToGrave()
 end
 function s.e3cst(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
