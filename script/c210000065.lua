@@ -79,7 +79,7 @@ function s.e2evt(e,tp)
 end
 function s.e3fil(c,e,tp)
 	return c:IsCode(210000064)
-	-- and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK)
+	c:IsCanBeSpecialSummoned(e,0,tp,true,false,POS_FACEUP_ATTACK)
 end
 function s.e3tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
@@ -92,6 +92,6 @@ function s.e3evt(e,tp)
 	local g=Duel.SelectMatchingCard(tp,s.e3fil,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,tp)
 
 	if g:GetCount()>0 then
-		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_ATTACK)
+		Duel.SpecialSummon(g,0,tp,tp,true,false,POS_FACEUP_ATTACK)
 	end
 end
