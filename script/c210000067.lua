@@ -45,7 +45,7 @@ function s.e1evt(e,tp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 
-	Duel.SpecialSummon(c,0,tp,tp,false,false)
+	Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 end
 function s.e2con(e,tp)
 	return tp==Duel.GetTurnPlayer()
