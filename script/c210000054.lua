@@ -16,6 +16,36 @@ function s.initial_effect(c)
 	e1:SetTarget(s.e1tgt)
 	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)
+
+	aux.GlobalCheck(s,function()
+		local eg1=Effect.CreateEffect(c)
+		eg1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		eg1:SetCode(EVENT_MSET)
+		eg1:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
+			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
+		end)
+
+		local eg2=Effect.CreateEffect(c)
+		eg2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		eg2:SetCode(EVENT_SUMMON)
+		eg2:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
+			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
+		end)
+
+		local eg3=Effect.CreateEffect(c)
+		eg3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		eg3:SetCode(EVENT_SPSUMMON)
+		eg3:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
+			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
+		end)
+
+		local eg4=Effect.CreateEffect(c)
+		eg4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		eg4:SetCode(EVENT_FLIP_SUMMON)
+		eg4:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
+			Duel.RegisterFlagEffect(rp,id,RESET_PHASE|PHASE_END,0,1)
+		end)
+	end)
 	--[[
 	[HOPT]
 	During the Main Phase: You can banish this card from your GY;
@@ -31,6 +61,7 @@ function s.initial_effect(c)
 end
 function s.e1con(e,tp)
 	return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0
+	and not Duel.HasFlagEffect(tp,id)
 end
 function s.e1fil(c,tp)
 	return c:IsSetCard(0xce2b)
