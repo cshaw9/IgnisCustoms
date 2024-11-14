@@ -62,7 +62,6 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			e2:SetTarget(s.e2tgt)
 			e2:SetOperation(s.e2evt)
 			e2:SetLabelObject(g)
-			e2:SetReset(RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN,1)
 			c:RegisterEffect(e2)
 		end
 	end
