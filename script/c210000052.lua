@@ -16,15 +16,15 @@ function s.initial_effect(c)
 	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)
 end
-function s.e1fil(c,e,z)
+function s.e1fil(c,z)
 	return c:IsSetCard(0xce2a)
 	and c:IsSpellTrap()
-	and not c~=e:GetHandler()
+	and not c:IsCode(id)
 	and c:IsSSetable()
 	and (z>0 or c:IsFieldSpell())
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
-	local b1=Duel.IsExistingMatchingCard(s.e1fil,tp,LOCATION_DECK,0,1,nil,e,Duel.GetLocationCount(tp,LOCATION_SZONE))
+	local b1=Duel.IsExistingMatchingCard(s.e1fil,tp,LOCATION_DECK,0,1,nil,Duel.GetLocationCount(tp,LOCATION_SZONE))
 	local b2=Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsCode,210000046),tp,LOCATION_FZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,2)
 
 	if chk==0 then
