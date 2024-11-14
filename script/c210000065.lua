@@ -49,7 +49,7 @@ function s.initial_effect(c)
 	e3:SetOperation(s.e3evt)
 	c:RegisterEffect(e3)
 end
-function s.e1fil1(c)
+function s.e1fil1(e,c)
 	return c:IsRace(RACE_ILLUSION)
 end
 function s.e1fil2(c)
