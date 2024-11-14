@@ -74,8 +74,8 @@ function s.e2evt(e,tp,eg,ep,ev,re)
 	end
 end
 function s.e3con(e,tp)
-	return tp~=Duel.GetTurnPlayer()
-	and Duel.GetCurrentPhase()==PHASE_BATTLE
+	return (Duel.GetCurrentPhase()==PHASE_BATTLE_START or Duel.IsBattlePhase())
+	and Duel.IsTurnPlayer(1-tp)
 end
 function s.e3evt(e,tp)
 	local c=e:GetHandler()

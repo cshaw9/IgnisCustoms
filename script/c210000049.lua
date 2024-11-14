@@ -49,7 +49,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function s.e1con(e,tp)
-	return tp~=Duel.GetTurnPlayer()
+	return Duel.IsTurnPlayer(1-tp)
 	and Duel.GetCurrentPhase()==PHASE_STANDBY
 end
 function s.e2tgt(e,re)

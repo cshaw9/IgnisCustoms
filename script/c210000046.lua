@@ -123,7 +123,7 @@ function s.e4fil(c)
 	and not c:IsForbidden()
 end
 function s.e4con(e,tp)
-	return tp==Duel.GetTurnPlayer()
+	return Duel.IsTurnPlayer(tp)
 end
 function s.e4tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
