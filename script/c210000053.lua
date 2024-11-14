@@ -38,10 +38,10 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	
 	local sel=g:Select(tp,1,max-1,nil)
+	sel:KeepAlive()
 	e:SetLabelObject(sel)
 
 	Duel.ConfirmCards(1-tp,sel)
-	Debug.ShowHint(""..(max-1))
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,max)
 end
 function s.e1evt(e,tp)
