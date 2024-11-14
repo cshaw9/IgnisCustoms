@@ -18,7 +18,7 @@ function s.initial_effect(c)
 	e2:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_ACTIVATE)
 	e2:SetCode(EVENT_CHAINING)
-	e2:SetRange(LOCATION_SZONE)
+	e2:SetRange(LOCATION_SZONE+LOCATION_HAND)
 	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
 	e2:SetCondition(s.e2con)
 	e2:SetTarget(s.e2tgt)
@@ -54,7 +54,7 @@ function s.e2con(e,tp,eg,ep,ev,re,r,rp)
 
 	local tg=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)
 	return tg
-	and tg:IsExists(s.tfilter,1,nil,tp)
+	and tg:IsExists(s.e2fil,1,nil,tp)
 	and Duel.IsChainNegatable(ev)
 	and Duel.IsEnvironment(210000046)
 end
