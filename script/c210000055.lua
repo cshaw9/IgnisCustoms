@@ -47,11 +47,11 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		and chkc:IsCanBeEffectTarget()
 	end
 	if chk==0 then
-		return Duel.IsExistingTarget(s.e1fil1,tp,0,LOCATION_ONFIELD,1,nil)
+		return Duel.IsExistingTarget(s.e1fil1,tp,0,LOCATION_ONFIELD,1,nil,tp)
 	end
 
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_NEGATE)
-	local g=Duel.SelectTarget(tp,s.e1fil1,tp,0,LOCATION_ONFIELD,1,1,nil)
+	local g=Duel.SelectTarget(tp,s.e1fil1,tp,0,LOCATION_ONFIELD,1,1,nil,tp)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,1,tp,0)
 end
 function s.e1evt(e)
