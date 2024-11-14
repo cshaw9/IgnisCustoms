@@ -23,7 +23,7 @@ function s.initial_effect(c)
 	e2:SetCountLimit(1)
 	e2:SetCondition(s.e2con)
 	e2:SetTarget(s.e2tgt)
-	e2:SetEvent(s.e2evt)
+	e2:SetOperation(s.e2evt)
 	c:RegisterEffect(e2)
 
 	e1:SetLabelObject(e2)
