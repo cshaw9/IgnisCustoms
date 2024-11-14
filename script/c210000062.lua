@@ -107,5 +107,5 @@ function s.e3evt(e)
 end
 function s.e3val(e,re)
 	local c=e:GetHandler()
-	return c~=re:GetOwner() and not c:IsStatus(STATUS_BATTLE_DESTROYED)
+	return c~=re:GetOwner()
 end
