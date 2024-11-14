@@ -29,8 +29,9 @@ end
 function s.e1tgt(e,tc)
 	return tc~=e:GetHandler() 
 end
-function s.e2fil(c,e)
+function s.e2fil(c,e,tp)
 	return c:IsMonster()
+	and c:IsFaceup()
 	and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 	and c~=e:GetHandler()
 end
