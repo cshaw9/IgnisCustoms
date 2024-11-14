@@ -23,6 +23,7 @@ function s.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_PREDRAW)
 	e2:SetRange(LOCATION_REMOVED)
+	e2:SetCountLimit(1)
 	e2:SetCondition(s.e2con)
 	e2:SetTarget(s.e2tgt)
 	c:RegisterEffect(e2)
@@ -51,7 +52,7 @@ function s.e2con(e,tp)
 	and Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>0
 	and Duel.GetDrawCount(tp)>0
 end
-function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		return Duel.IsPlayerCanDraw(tp,2)
 	end
