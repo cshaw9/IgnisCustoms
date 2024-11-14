@@ -66,18 +66,6 @@ function s.e1evt(e,tp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 
-	local code=e:GetLabel()
-
-	local e1b=Effect.CreateEffect(c)
-	e1b:SetType(EFFECT_TYPE_SINGLE)
-	e1b:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-	e1b:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
-	e1b:SetCode(EFFECT_CHANGE_CODE)
-	e1b:SetValue(code)
-	c:RegisterEffect(e1b)
-
-	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
-
 	local e1a1=Effect.CreateEffect(c)
 	e1a1:SetType(EFFECT_TYPE_FIELD)
 	e1a1:SetCode(EFFECT_CANNOT_SUMMON)
@@ -109,6 +97,18 @@ function s.e1evt(e,tp)
 	e1a4:SetTargetRange(1,0)
 	e1a4:SetReset(RESET_PHASE+PHASE_END,2)
 	Duel.RegisterEffect(e1a4,tp)
+
+	local code=e:GetLabel()
+
+	local e1b=Effect.CreateEffect(c)
+	e1b:SetType(EFFECT_TYPE_SINGLE)
+	e1b:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	e1b:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+	e1b:SetCode(EFFECT_CHANGE_CODE)
+	e1b:SetValue(code)
+	c:RegisterEffect(e1b)
+
+	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
 end
 function s.e2con(e)
 	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_ONFIELD,0)==0
