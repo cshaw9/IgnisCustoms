@@ -51,7 +51,7 @@ function s.initial_effect(c)
 	e4b:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_CLIENT_HINT)
 	e4b:SetTargetRange(1,1)
 	e4b:SetValue(POS_ATTACK)
-	Duel.RegisterEffect(e4b,tp)
+	c.RegisterEffect(e4b)
 	--[[
 	[HOPT]
 	During your Main Phase 2: You can activate 1 of these effects.
@@ -61,7 +61,7 @@ function s.initial_effect(c)
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_IGNITION)
 	e5:SetRange(LOCATION_MZONE)
-	--e5:SetCountLimit(1,(id+0))
+	e5:SetCountLimit(1,(id+0))
 	e5:SetCondition(s.e5con)
 	e5:SetTarget(s.e5tgt)
 	e5:SetOperation(s.e5evt)
