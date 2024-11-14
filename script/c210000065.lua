@@ -55,7 +55,8 @@ end
 function s.e1fil2(c)
 	return not c:IsCode(id)
 end
-function s.e1val()
+function s.e1val(e,c)
+	local tp=e:GetHandlerPlayer()
 	return Duel.GetMatchingGroup(s.e1fil2,tp,LOCATION_REMOVED,LOCATION_REMOVED,nil):GetCount()*100
 end
 function s.e2fil(c)
