@@ -42,6 +42,8 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
 function s.e1evt(e,tp)
+	Duel.GetLocationCount(tp,LOCATION_MZONE)<1 then return end
+
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 
