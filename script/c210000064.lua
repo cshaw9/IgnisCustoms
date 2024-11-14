@@ -51,7 +51,7 @@ function s.initial_effect(c)
 	e4b:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_CLIENT_HINT)
 	e4b:SetTargetRange(1,1)
 	e4b:SetValue(POS_ATTACK)
-	c.RegisterEffect(e4b)
+	c:RegisterEffect(e4b)
 	--[[
 	[HOPT]
 	During your Main Phase 2: You can activate 1 of these effects.
