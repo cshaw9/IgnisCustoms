@@ -50,7 +50,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function s.e1fil1(c)
-	return s:IsRace(RACE_ILLUSION)
+	return c:IsRace(RACE_ILLUSION)
 end
 function s.e1fil2(c)
 	return not c:IsCode(id)
