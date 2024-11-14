@@ -24,7 +24,10 @@ function s.e1fil(c,z)
 	and (z>0 or c:IsFieldSpell())
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
-	local b1=Duel.IsExistingMatchingCard(s.e1fil,tp,LOCATION_DECK,0,1,nil,Duel.GetLocationCount(tp,LOCATION_SZONE))
+	local z=Duel.GetLocationCount(tp,LOCATION_SZONE)
+	if e:GetHandler():IsLocation(LOCATION_HAND) then z=z-1 end
+
+	local b1=Duel.IsExistingMatchingCard(s.e1fil,tp,LOCATION_DECK,0,1,nil,z)
 	local b2=Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsCode,210000046),tp,LOCATION_FZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,2)
 
 	if chk==0 then

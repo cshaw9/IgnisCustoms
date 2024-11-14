@@ -12,7 +12,6 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,(id+0))
-	e1:SetHintTiming(TIMING_DRAW_PHASE)
 	e1:SetCondition(s.e1con)
 	e1:SetTarget(s.e1tgt)
 	e1:SetOperation(s.e1evt)
@@ -40,9 +39,12 @@ function s.e1fil(c,tp)
 	and not Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsCode,c:GetCode()),tp,LOCATION_ONFIELD,0,1,nil)
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
+	local z=Duel.GetLocationCount(tp,LOCATION_SZONE)
+	if e:GetHandler():IsLocation(LOCATION_HAND) then z=z-1 end
+
 	if chk==0 then
 		return Duel.IsExistingMatchingCard(s.e1fil,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil,tp)
-		and Duel.GetLocationCount(tp,LOCATION_SZONE)>=1
+		and z>0
 	end
 end
 function s.e1evt(e,tp)
