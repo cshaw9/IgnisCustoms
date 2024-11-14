@@ -39,10 +39,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2b)
 end
 function s.e1fil(c)
-	return ((c:IsSetCard(0xce2a)
-	and c:IsSpellTrap())
-	or (c:IsSetCard(0xce2b)
-	and c:IsContinuousTrap()))
+	return ((c:IsSetCard(0xce2a) and c:IsSpellTrap())
+	or (c:IsSetCard(0xce2b) and c:IsContinuousTrap()))
 	and not c:IsCode(id)
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)

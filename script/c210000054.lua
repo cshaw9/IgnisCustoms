@@ -95,7 +95,7 @@ function s.e1evt(e,tp)
 
 	if Duel.GetLocationCount(tp,LOCATION_SZONE)<1 then return end
 
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.e1fil),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tp)
 	if g:GetCount()>0 then
 		Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEUP,true)
