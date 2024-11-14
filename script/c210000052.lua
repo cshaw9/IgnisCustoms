@@ -31,7 +31,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 		return b1 or b2
 	end
 	
-	local sel=Duel.SelectEffect(tp,{b1,aux.Stringid(id,1)},{b2,aux.Stringid(id,2)})
+	local sel=Duel.SelectEffect(tp,{b1,aux.Stringid(id,0)},{b2,aux.Stringid(id,1)})
 	e:SetLabel(sel)
 
 	if sel==2 then
