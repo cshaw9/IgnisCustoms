@@ -68,7 +68,7 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 		for tc in g:Iter() do
 			local e2b1=Effect.CreateEffect(c)
 			e2b1:SetType(EFFECT_TYPE_SINGLE)
-			e2b1:SetCode(EFFECT_TO_DECK_REDIRECT)
+			e2b1:SetCode(EFFECT_REMOVE_REDIRECT)
 			e2b1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 			e2b1:SetValue(LOCATION_HAND)
 			e2b1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
