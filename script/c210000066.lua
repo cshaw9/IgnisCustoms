@@ -54,7 +54,7 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 	
 	local c=e:GetHandler()
-	if Duel.SelectEffectYesNo(tp,c) then
+	if Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
 		local g=eg:Filter(s.e2fil,nil,tp)
 		local ct=g:GetCount()
 		
