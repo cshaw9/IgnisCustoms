@@ -85,16 +85,17 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=e:GetLabelObject()
 
 	if chk==0 then
+		Debug.ShowHint("G: "..g:GetCount().." R: "..g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount())
 		return g:GetCount()==g:Filter(Card.IsLocation,nil,LOCATION_REMOVED):GetCount()
 	end
 	
 	local c=e:GetHandler()
 
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,0,0)
-	
-	c:ResetFlagEffect(id)
 end
 function s.e2evt(e,tp,eg,ep,ev,re,r,rp)
+	c:ResetFlagEffect(id)
+
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
 		Duel.SendtoHand(e:GetLabelObject(),nil,REASON_EFFECT)
