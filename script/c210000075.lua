@@ -2,6 +2,8 @@
 local s,id,o=GetID()
 -- c210000075
 function s.initial_effect(c)
+	c:EnableCounterPermit(0x34)
+	c:SetCounterLimit(0x34,5)
 	-- [Activation]
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -22,7 +24,6 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e3:SetCode(EVENT_REMOVE)
 	e3:SetRange(LOCATION_FZONE)
-	e3:SetCondition(s.e3con)
 	e3:SetOperation(s.e3evt)
 	c:RegisterEffect(e3)
 	--[[
@@ -55,9 +56,6 @@ function s.initial_effect(c)
 end
 function s.e2tgt(e,c)
 	return Duel.IsPlayerCanRemove(e:GetHandlerPlayer(),c)
-end
-function s.e3con(e)
-	return e:GetHandler():GetCounter(0x34)<5
 end
 function s.e3evt(e)
 	e:GetHandler():AddCounter(0x34,1)
