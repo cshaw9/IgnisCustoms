@@ -136,7 +136,7 @@ function s.e3evt(e,tp)
 	if g:GetCount()>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 
-		local sg=Duel.SelectMatchingCard(tp,s.e3fil,tp,LOCATION_ONFIELD,0,1,1,nil)
+		local sg=Duel.SelectMatchingCard(tp,s.e3fil,tp,0,LOCATION_ONFIELD,1,1,nil)
 		Duel.SendtoGrave(sg,REASON_EFFECT)
 	end
 end
