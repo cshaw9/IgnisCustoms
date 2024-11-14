@@ -41,18 +41,13 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabelObject(sel)
 
 	Duel.ConfirmCards(1-tp,sel)
+	Debug.ShowHint(max-1)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,max)
 end
 function s.e1evt(e,tp)
-	local g=Duel.GetMatchingGroup(s.e1fil,tp,LOCATION_HAND,0,nil)
-	local max=Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)
-	if max>(g:GetCount()+1) then
-		max=g:GetCount()
-	end
+	local tg=e:GetLabelObject()
 
-	if Duel.Draw(tp,max,REASON_EFFECT)>0 then
-		local tg=e:GetLabelObject()
-
+	if tg and Duel.Draw(tp,tg:GetCount()+1,REASON_EFFECT)>0 then
 		local rt=Duel.SendtoDeck(tg,nil,SEQ_DECKBOTTOM,REASON_EFFECT)
 		if rt==0 then return end
 		Duel.SortDeckbottom(tp,tp,rt)
