@@ -77,8 +77,8 @@ function s.e1evt(e)
 
 	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
 end
-function s.e2con(e,tp)
-	return Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)==0
+function s.e2con(e)
+	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_ONFIELD,0)==0
 end
 function s.e3fil(c)
 	return c:IsAbleToGrave(e)
