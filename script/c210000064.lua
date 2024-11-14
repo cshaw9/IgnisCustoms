@@ -61,7 +61,8 @@ function s.initial_effect(c)
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_IGNITION)
 	e5:SetRange(LOCATION_MZONE)
-	e5:SetCountLimit(1,(id+0))
+	--e5:SetCountLimit(1,(id+0))
+	e5:SetCondition(s.e5con)
 	e5:SetTarget(s.e5tgt)
 	e5:SetOperation(s.e5evt)
 	c:RegisterEffect(e5)
@@ -107,6 +108,9 @@ function s.e2evt(e,tp)
 	if g:GetCount()>0 then
 		Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
 	end
+end
+function s.e5con(e)
+	return Duel.GetCurrentPhase()==PHASE_MAIN2
 end
 function s.e5tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b1=e:GetHandler():GetAttack()>=1000 and Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)>0
