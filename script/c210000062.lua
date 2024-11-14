@@ -91,7 +91,8 @@ function s.e3tgt(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	Duel.SelectTarget(tp,s.e3fil,tp,LOCATION_FZONE,0,1,1,nil)
 end
-function s.e3evt(e,tp)
+function s.e3evt(e)
+	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 
 	if tc and tc:IsFaceup() and tc:IsRelateToEffect(e) then
