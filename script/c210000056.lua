@@ -61,7 +61,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabel(code)
 	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 end
-function s.e1evt(e)
+function s.e1evt(e,tp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 
