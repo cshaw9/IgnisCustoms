@@ -138,7 +138,7 @@ function s.e5evt(e,tp)
 			if not c:IsHasEffect(EFFECT_REVERSE_UPDATE) then
 				local g=Duel.SelectMatchingCard(tp,aux.TRUE,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 				if g:GetCount()>0 then
-					Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)
+					Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
 				end
 			end
 		end
