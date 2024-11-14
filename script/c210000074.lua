@@ -47,6 +47,7 @@ function s.e1evt(e,tp,eg,ep,ev,re)
 			local g=Group.CreateGroup()
 			g:AddCard(c)
 			g:AddCard(eg:GetFirst())
+			g:KeepAlive()
 
 			c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN,0,1)
 			
