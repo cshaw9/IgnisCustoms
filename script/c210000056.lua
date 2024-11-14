@@ -131,7 +131,7 @@ function s.e3tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 		return Duel.GetMatchingGroup(s.e3fil,tp,0,LOCATION_ONFIELD,nil):GetCount()>0
 	end
 end
-function s.e3evt(e)
+function s.e3evt(e,tp)
 	local g=Duel.GetMatchingGroup(s.e3fil,tp,0,LOCATION_ONFIELD,nil)
 	if g:GetCount()>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
