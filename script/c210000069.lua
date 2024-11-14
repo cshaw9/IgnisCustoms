@@ -6,13 +6,11 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_TO_GRAVE_REDIRECT)
-	e1:SetTargetRange(0xff,0xff)
-	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_SET_AVAILABLE+EFFECT_FLAG_IGNORE_RANGE+EFFECT_FLAG_IGNORE_IMMUNE)
-	--e1:SetCondition(s.e1con)
-	e1:SetTarget(s.e1tgt)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	e1:SetCondition(s.e1con)
 	e1:SetValue(LOCATION_REMOVED)
 	c:RegisterEffect(e1)
-	--[[
+
 	if not s.global_check then
 		s.global_check=true
 
@@ -24,7 +22,6 @@ function s.initial_effect(c)
 		e1b:SetValue(LOCATION_REMOVED)
 		Duel.RegisterEffect(e1b,0)
 	end
-	]]--
 	--[[
 	[HOPT]
 	If this card is Normal or Special Summoned:
@@ -62,9 +59,6 @@ function s.initial_effect(c)
 end
 function s.e1con(e)
 	return e:GetHandler():GetDestination()==LOCATION_GRAVE
-end
-function s.e1tgt(e,c)
-	return Duel.IsPlayerCanRemove(e:GetHandlerPlayer(),c)
 end
 function s.e2fil(c,e,tp)
 	return c:IsSetCard(0xce3)
