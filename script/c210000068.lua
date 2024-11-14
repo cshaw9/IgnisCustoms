@@ -43,6 +43,8 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_REMOVED)
 end
 function s.e2evt(e,tp)
+	local c=e:GetHandler()
+
 	local e2b1=Effect.CreateEffect(c)
 	e2b1:SetType(EFFECT_TYPE_SINGLE)
 	e2b1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
