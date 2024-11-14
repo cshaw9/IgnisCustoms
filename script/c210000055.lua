@@ -31,9 +31,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.e1fil1(c,tp)
-	return chkc:IsControler(1-tp)
-	and chkc:IsNegatable()
-	and chkc:IsCanBeEffectTarget()
+	return c:IsControler(1-tp)
+	and c:IsNegatable()
+	and c:IsCanBeEffectTarget()
 end
 function s.e1fil2(c)
 	return c:IsSetCard(0xce2a)
