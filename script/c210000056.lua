@@ -58,7 +58,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	
 	local sg=g:Select(tp,1,1,nil)
-	local code=g:GetFirst():GetOriginalCodeRule()
+	local code=sg:GetFirst():GetOriginalCodeRule()
 	e:SetLabel(code)
 	e:GetHandler():RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 end
@@ -107,8 +107,6 @@ function s.e1evt(e,tp)
 	e1b:SetCode(EFFECT_CHANGE_CODE)
 	e1b:SetValue(code)
 	c:RegisterEffect(e1b)
-
-	Debug.ShowHint(""..code)
 
 	c:CopyEffect(code,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
 end
