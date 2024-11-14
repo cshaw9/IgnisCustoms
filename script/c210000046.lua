@@ -85,8 +85,7 @@ end
 function s.e0fil(c)
 	return c:IsFaceup()
 	and c:IsSetCard(0xce2b)
-	and c:IsType(TYPE_TRAP)
-	and c:IsType(TYPE_CONTINUOUS)
+	and c:IsContinuousTrap()
 end
 function s.e0evt(e,tp)
 	local g=Duel.GetMatchingGroup(s.e0fil,tp,LOCATION_ONFIELD,0,nil)
@@ -120,13 +119,11 @@ function s.e3evt(e,tp)
 end
 function s.e4fil(c)
 	return c:IsSetCard(0xce2b)
-	and c:IsType(TYPE_TRAP)
-	and c:IsType(TYPE_CONTINUOUS)
+	and c:IsContinuousTrap()
 	and not c:IsForbidden()
 end
 function s.e4con(e,tp)
 	return tp==Duel.GetTurnPlayer()
-	and Duel.GetFieldGroupCount(tp,LOCATION_SZONE,0)>0
 end
 function s.e4tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then

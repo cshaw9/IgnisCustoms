@@ -34,6 +34,7 @@ function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if max>(g:GetCount()+1) then
 		max=g:GetCount()+1
 	end
+	
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	
 	local sel=g:Select(tp,1,max-1,nil)
