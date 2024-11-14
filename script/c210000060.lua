@@ -72,7 +72,7 @@ function s.e2fil1(c,tp)
 	and c:IsReason(REASON_EFFECT)
 	and c:GetReasonPlayer()==1-tp
 end
-function s.e2con(e)
+function s.e2con(e,tp,eg)
 	return eg:IsExists(s.e2fil1,1,nil,tp)
 end
 function s.e2fil2(c)
