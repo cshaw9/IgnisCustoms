@@ -21,7 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.e2fil(c)
-	return c:IsSetCard(0xce1)
+	return c:IsSetCard(0xce3)
 end
 function s.e2con(e,tp,eg)
 	return eg:Filter(s.e2fil, nil):GetCount()>=1
