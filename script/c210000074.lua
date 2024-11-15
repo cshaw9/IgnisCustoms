@@ -89,7 +89,7 @@ function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,0,0)
 end
-function s.e2evt(e,tp,eg,ep,ev,re,r,rp)
+function s.e2evt(e)
 	local c=e:GetHandler()
 
 	if c:IsRelateToEffect(e) then

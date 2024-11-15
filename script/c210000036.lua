@@ -38,7 +38,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.e1con(e,tp)
-	return Duel.GetFieldGroupCount(tp,LOCATION_REMOVED,LOCATION_REMOVED)>0
+	return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO)
+	and Duel.GetFieldGroupCount(tp,LOCATION_REMOVED,LOCATION_REMOVED)>0
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
