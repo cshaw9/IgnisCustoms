@@ -58,7 +58,7 @@ function s.e1efil(c,e)
 	and c~=e:GetHandler()
 end
 function s.e1sfil(e,tp,mg)
-	return Duel.GetMatchingGroup(Fusion.IsMonsterFilter(s.e1efil),tp,LOCATION_REMOVED,0,nil)
+	return Duel.GetMatchingGroup(Fusion.IsMonsterFilter(s.e1efil),tp,LOCATION_REMOVED,0,nil,e)
 end
 function s.e1stgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
