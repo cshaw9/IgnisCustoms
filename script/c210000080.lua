@@ -2,20 +2,24 @@
 local s,id,o=GetID()
 -- c210000080
 function s.initial_effect(c)
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetCode(EVENT_FREE_CHAIN)
+	c:RegisterEffect(e1)
 	--[[
 	If a card(s) you control would be destroyed by battle or an opponent’s card effect:
 	Pay 1000 LP for each card that would be destroyed, instead
 	(you must protect all your cards that would be destroyed, if you use this effect).
 	]]--
-	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e1:SetCode(EFFECT_DESTROY_REPLACE)
-	e1:SetRange(LOCATION_SZONE)
-	e1:SetCondition(s.e1con)
-	e1:SetTarget(s.e1tgt)
-	e1:SetValue(s.e1val)
-	e1:SetOperation(s.e1evt)
-	c:RegisterEffect(e1)
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	e2:SetCode(EFFECT_DESTROY_REPLACE)
+	e2:SetRange(LOCATION_SZONE)
+	e2:SetCondition(s.e2con)
+	e2:SetTarget(s.e2tgt)
+	e2:SetValue(s.e2val)
+	e2:SetOperation(s.e2evt)
+	c:RegisterEffect(e2)
 end
 function s.e1fil(c,tp)
 	return c:IsFaceup()
@@ -24,9 +28,7 @@ function s.e1fil(c,tp)
 	and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))
 end
 function s.e1con(e)
-	local c=e:GetHandler()
-
-	return c:IsFacedown()
+	return e:GetHandler():IsFaceup()
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -46,5 +48,6 @@ function s.e1val(e,c)
 end
 function s.e1evt(e,tp,eg)
 	Duel.PayLPCost(tp,e:GetLabel())
+	Duel.BreakEffect()
 	Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)
 end
