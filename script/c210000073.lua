@@ -73,7 +73,8 @@ function s.e1sevt(e,tc,tp,sg)
 	end
 	Fusion.BanishMaterial(e,tc,tp,sg)
 
-	Card.ResetFlagEffect(e:GetHandler(),id)
+	local c=e:GetHandler()
+	Card.ResetFlagEffect(c,id)
 	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 end
 function s.e2con(e)
