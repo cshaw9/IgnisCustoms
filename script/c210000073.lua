@@ -7,7 +7,7 @@ function s.initial_effect(c)
 	During the Main Phase (Quick Effect): You can banish this card from your hand;
 	Fusion Summon 1 “Banishite” Fusion Monster from your Extra Deck,
 	by banishing monsters from your hand or field,
-	and/or shuffling monsters from your banishment into the Deck/Extra Deck as material.
+	and/or shuffling monsters from your banishment into the Deck/Extra Deck as material, except this card.
 	]]--
 	local params = {
 		fusfilter=aux.FilterBoolFunction(Card.IsSetCard,0xce3),
@@ -23,7 +23,7 @@ function s.initial_effect(c)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetCountLimit(1,(id+0))
-	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER|TIMING_MAIN_END)
+	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_MAIN_END)
 	e1:SetCondition(s.e1con)
 	e1:SetCost(aux.bfgcost)
 	e1:SetTarget(Fusion.SummonEffTG(params))
@@ -49,15 +49,13 @@ end
 function s.e1con(e)
 	return Duel.IsMainPhase()
 end
-function s.e1mfil(c)
-	return ((c:IsLocation(LOCATION_HAND) or c:IsOnField()) and c:IsAbleToRemove())
-	or (c:IsLocation(LOCATION_REMOVED) and c:IsAbleToDeck())
+function s.e1mfil(c,e)
+	return (((c:IsLocation(LOCATION_HAND) or c:IsOnField()) and c:IsAbleToRemove())
+	or (c:IsLocation(LOCATION_REMOVED) and c:IsAbleToDeck()))
+	and c~=e:GetHandler()
 end
 function s.e1sfil(e,tp,mg)
-	if not Duel.IsPlayerAffectedByEffect(tp,CARD_SPIRIT_ELIMINATION) then
-		return Duel.GetMatchingGroup(Fusion.IsMonsterFilter(Card.IsAbleToRemove),tp,LOCATION_GRAVE,0,nil)
-	end
-	return nil
+	return Duel.GetMatchingGroup(Fusion.IsMonsterFilter(Card.IsAbleToDeck),tp,LOCATION_REMOVED,0,nil)
 end
 function s.e1stgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
