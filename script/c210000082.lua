@@ -27,7 +27,7 @@ function s.e1con(e)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then true end
+	if chk==0 then return true end
 
 	local ct=Duel.GetFieldGroupCount(tp,LOCATION_HAND+LOCATION_ONFIELD,LOCATION_HAND+LOCATION_ONFIELD)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,PLAYER_ALL,ct)
