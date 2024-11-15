@@ -30,7 +30,7 @@ function s.e0mat(c,fc,sumtype,tp,sub,mg,sg)
 	return c:IsSetCard(0xce3,fc,sumtype,tp)
 	and c:IsLocation(LOCATION_REMOVED)
 	and c:IsControler(tp)
-	and (not sg or not sg:IsExists(s.fusfilter,1,c,c:GetCode(fc,sumtype,tp),fc,sumtype,tp))
+	and (not sg or not sg:IsExists(s.e0fil,1,c,c:GetCode(fc,sumtype,tp),fc,sumtype,tp))
 end
 function s.e1con(e)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
