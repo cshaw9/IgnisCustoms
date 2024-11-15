@@ -27,7 +27,7 @@ function s.e2fil(c,tp)
 	and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))
 end
 function s.e2con(e)
-	return e:GetHandler():IsFaceup()
+	return true--e:GetHandler():IsFaceup()
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
