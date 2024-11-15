@@ -27,7 +27,7 @@ function s.e2fil(c,tp)
 	and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))
 end
 function s.e2con(e)
-	return true--e:GetHandler():IsFaceup()
+	return e:GetHandler():IsFaceup()
 end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -48,5 +48,9 @@ end
 function s.e2evt(e,tp,eg)
 	Duel.PayLPCost(tp,e:GetLabel())
 	Duel.BreakEffect()
-	Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)
+
+	local c=e:GetHandler()
+	if c:IsLocation(LOCATION_SZONE) then
+		Duel.SendtoGrave(c,REASON_EFFECT)
+	end
 end
