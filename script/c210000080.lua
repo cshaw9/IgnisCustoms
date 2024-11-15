@@ -21,32 +21,32 @@ function s.initial_effect(c)
 	e2:SetOperation(s.e2evt)
 	c:RegisterEffect(e2)
 end
-function s.e1fil(c,tp)
+function s.e2fil(c,tp)
 	return c:IsFaceup()
 	and c:IsLocation(LOCATION_ONFIELD)
 	and c:IsControler(tp)
 	and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))
 end
-function s.e1con(e)
+function s.e2con(e)
 	return e:GetHandler():IsFaceup()
 end
-function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 
-	local p=eg:Filter(s.e1fil, nil):GetCount()*1000
+	local p=eg:Filter(s.e2fil, nil):GetCount()*1000
 
 	if chk==0 then
-		return eg:IsExists(s.e1fil,1,nil,tp)
+		return eg:IsExists(s.e2fil,1,nil,tp)
 		and Duel.CheckLPCost(tp,p)
 	end
 	
 	e:SetLabel(p)
 	return Duel.SelectEffectYesNo(tp,c)
 end
-function s.e1val(e,c)
-	return s.e1fil(c,e:GetHandlerPlayer())
+function s.e2val(e,c)
+	return s.e2fil(c,e:GetHandlerPlayer())
 end
-function s.e1evt(e,tp,eg)
+function s.e2evt(e,tp,eg)
 	Duel.PayLPCost(tp,e:GetLabel())
 	Duel.BreakEffect()
 	Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)
