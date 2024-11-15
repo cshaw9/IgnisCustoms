@@ -66,11 +66,11 @@ function s.e1evt(e,tp)
 		Duel.BreakEffect()
 
 		local max=Duel.GetLocationCount(tp,LOCATION_MZONE)
-		if max>0 and Duel.IsExistingMatchingCard(s.e1fil,0,LOCATION_REMOVED,LOCATION_REMOVED,1,nil) then
+		if max>0 and Duel.IsExistingMatchingCard(s.e1fil,0,LOCATION_REMOVED,LOCATION_REMOVED,1,nil,e,tp) then
 			if max>3 then
 				max=3
 			end
-			local tg=Duel.SelectMatchingCard(tp,s.e1fil,tp,LOCATION_REMOVED,LOCATION_REMOVED,0,max,nil)
+			local tg=Duel.SelectMatchingCard(tp,s.e1fil,tp,LOCATION_REMOVED,LOCATION_REMOVED,0,max,nil,e,tp)
 			Duel.SpecialSummon(tg,0,tp,tp,false,false,POS_FACEUP)
 		end
 	end
