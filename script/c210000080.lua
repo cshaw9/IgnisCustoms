@@ -8,7 +8,7 @@ function s.initial_effect(c)
 	(you must protect all your cards that would be destroyed, if you use this effect).
 	]]--
 	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EFFECT_DESTROY_REPLACE)
 	e1:SetRange(LOCATION_SZONE)
 	e1:SetTarget(s.e1tgt)
