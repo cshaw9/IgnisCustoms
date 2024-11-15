@@ -23,6 +23,9 @@ function s.initial_effect(c)
 	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)
 end
+function s.e0fil(c,code,fc,sumtype,tp)
+	return c:IsSummonCode(fc,sumtype,tp,code) and not c:IsHasEffect(511002961)
+end
 function s.e0mat(c,fc,sumtype,tp,sub,mg,sg)
 	return c:IsSetCard(0xce3,fc,sumtype,tp)
 	and c:IsLocation(LOCATION_REMOVED)
