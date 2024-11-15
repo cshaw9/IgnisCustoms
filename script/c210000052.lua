@@ -11,7 +11,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,(id+0)) -- EFFECT_COUNT_CODE_OATH
+	e1:SetCountLimit(1,{id,0}) -- EFFECT_COUNT_CODE_OATH
 	e1:SetTarget(s.e1tgt)
 	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)
