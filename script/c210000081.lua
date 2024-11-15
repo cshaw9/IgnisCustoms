@@ -36,7 +36,7 @@ function s.e2fil(c)
 	and not c:IsType(TYPE_XYZ)
 	and not c:IsType(TYPE_LINK)
 end
-function s.e2evt(e,tp)
+function s.e2evt(e,tp,eg,ep,ev)
 	local tg=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)
 	if Duel.SendtoDeck(tg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 then
 		Duel.BreakEffect()
