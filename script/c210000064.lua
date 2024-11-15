@@ -160,7 +160,7 @@ function s.e5evt(e,tp)
 				e5b2:SetCountLimit(1)
 				e5b2:SetCondition(s.e5bcon)
 				e5b2:SetOperation(s.e5bevt)
-				e5b2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END+RESET_SELF_TURN)
+				e5b2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END+RESET_SELF_TURN,2)
 				c:RegisterEffect(e5b2)
 			end
 		end
