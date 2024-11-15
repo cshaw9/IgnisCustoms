@@ -37,7 +37,7 @@ function s.initial_effect(c)
 	-- You can only control 1 “Banishite Blockade”.
 	c:SetUniqueOnField(1,0,id)
 end
-function s.e2con(e)
+function s.e2con(e,tp)
 	return Duel.GetFieldGroupCount(tp,0,LOCATION_MZONE)>Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)
 end
 function s.e2lim(e,re,tp)
