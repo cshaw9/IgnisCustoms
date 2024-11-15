@@ -101,14 +101,14 @@ end
 function s.e3fil(c)
 	return c:IsAbleToRemove()
 end
-function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.e3tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.e3fil),0,LOCATION_GRAVE,LOCATION_GRAVE,5,nil)
 	end
 
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,5)
 end
-function s.e1evt(e,tp)
+function s.e3evt(e,tp)
 	if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.e3fil),0,LOCATION_GRAVE,LOCATION_GRAVE,5,nil)<5 then return end
 
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.e3fil),tp,LOCATION_GRAVE,LOCATION_GRAVE,5,5,nil)
