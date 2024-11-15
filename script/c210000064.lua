@@ -155,10 +155,18 @@ function s.e5evt(e,tp)
 				local e5b2=Effect.CreateEffect(c)
 				e5b2:SetType(EFFECT_TYPE_SINGLE)
 				e5b2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK)
+				e5b2:SetRange(LOCATION_MZONE)
 				e5b2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CLIENT_HINT)
+				e5b2:SetCondition(s.e5bcon)
 				e5b2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END+RESET_SELF_TURN)
 				c:RegisterEffect(e5b2)
 			end
 		end
 	end
+end
+function s.e5bcon(e,tp)
+	local c=e:GetHandler()
+
+	return c:GetTurnID()~=Duel.GetTurnCount()
+	and tp==Duel.GetTurnPlayer()
 end
