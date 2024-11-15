@@ -22,8 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.e2fil(c,tp)
-	return c:IsFaceup()
-	and c:IsLocation(LOCATION_ONFIELD)
+	return c:IsLocation(LOCATION_ONFIELD)
 	and c:IsControler(tp)
 	and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))
 end
