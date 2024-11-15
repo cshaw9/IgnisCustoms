@@ -48,9 +48,5 @@ end
 function s.e2evt(e,tp,eg)
 	Duel.PayLPCost(tp,e:GetLabel())
 	Duel.BreakEffect()
-
-	local c=e:GetHandler()
-	if c:IsLocation(LOCATION_SZONE) then
-		Duel.SendtoGrave(c,REASON_EFFECT)
-	end
+	Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)
 end
