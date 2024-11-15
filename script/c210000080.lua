@@ -32,7 +32,7 @@ end
 function s.e2tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 
-	local p=eg:Filter(s.e2fil, nil):GetCount()*1000
+	local p=eg:Filter(s.e2fil,nil,tp):GetCount()*1000
 
 	if chk==0 then
 		return eg:IsExists(s.e2fil,1,nil,tp)
