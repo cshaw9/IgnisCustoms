@@ -3,7 +3,7 @@ local s,id,o=GetID()
 -- c210000053
 function s.initial_effect(c)
 	--[[
-	[HOPT]
+	[HAPT]
 	Reveal any number of “Area” Continuous Traps in your hand;
 	draw cards equal to the number of revealed cards + 1,
 	and if you do, place the revealed cards on the bottom of the Deck in any order.
@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,{id,0}) -- EFFECT_COUNT_CODE_OATH
+	e1:SetCountLimit(1,{id,0},EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.e1tgt)
 	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)

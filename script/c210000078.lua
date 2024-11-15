@@ -3,7 +3,7 @@ local s,id,o=GetID()
 -- c210000078
 function s.initial_effect(c)
 	--[[
-	[HOPT]
+	[HAPT]
 	Pay LP in multiples of 1000 (max. 3000);
 	add 1 “Banishite” card from your Deck to your hand for every 1000 LP paid, except “Banishite Cavalry”.
 	]]--
@@ -11,7 +11,7 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_SEARCH+CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,{id,0})
+	e1:SetCountLimit(1,{id,0},EFFECT_COUNT_CODE_OATH)
 	e1:SetCost(s.e1cst)
 	e1:SetOperation(s.e1evt)
 	c:RegisterEffect(e1)

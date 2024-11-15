@@ -3,7 +3,7 @@ local s,id,o=GetID()
 -- c210000028
 function s.initial_effect(c)
 	--[[
-	[HOPT]
+	[HAPT]
 	Banish 1 Beast and 1 Machine “Polygod” non-Tuner monster, 1 each from your hand and Deck;
 	Special Summon 1 “Polygod” Beast Tuner from your Deck in face-up Defense Position, but it cannot activate its effects.
 	You cannot Special Summon monsters the turn you activate this card, except Level/Rank 4, 8, or 12 monsters.
@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_REMOVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,{id,0},EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.e1con)
 	e1:SetCost(s.e1cst)
 	e1:SetTarget(s.e1tgt)
