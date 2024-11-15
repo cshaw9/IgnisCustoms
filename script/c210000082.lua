@@ -49,7 +49,7 @@ function s.e1evt(e,tp)
 		During your next Standby Phase after this card was banished by this effect:
 		You can Special Summon this card from your banishment.
 		]]--
-		if g:Contains(c) then
+		if g:IsContains(c) then
 			local e2=Effect.CreateEffect(c)
 			e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 			e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
