@@ -152,6 +152,7 @@ function s.e5evt(e,tp)
 			c:RegisterEffect(e5b1)
 
 			if not c:IsHasEffect(EFFECT_REVERSE_UPDATE) then
+				Debug.ShowHint("CALLED")
 				local e5b2=Effect.CreateEffect(c)
 				e5b2:SetType(EFFECT_TYPE_SINGLE)
 				e5b2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK)
