@@ -11,6 +11,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EFFECT_DESTROY_REPLACE)
 	e1:SetRange(LOCATION_SZONE)
+	e1:SetCondition(s.e1con)
 	e1:SetTarget(s.e1tgt)
 	e1:SetValue(s.e1val)
 	e1:SetOperation(s.e1evt)
@@ -21,6 +22,11 @@ function s.e1fil(c,tp)
 	and c:IsLocation(LOCATION_ONFIELD)
 	and c:IsControler(tp)
 	and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))
+end
+function s.e1con(e)
+	local c=e:GetHandler()
+
+	return c:IsFacedown()
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -40,4 +46,5 @@ function s.e1val(e,c)
 end
 function s.e1evt(e,tp,eg)
 	Duel.PayLPCost(tp,e:GetLabel())
+	Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)
 end
