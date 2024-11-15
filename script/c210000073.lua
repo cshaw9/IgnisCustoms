@@ -49,13 +49,16 @@ end
 function s.e1con(e)
 	return Duel.IsMainPhase()
 end
-function s.e1mfil(c,e)
+function s.e1mfil(c)
 	return (((c:IsLocation(LOCATION_HAND) or c:IsOnField()) and c:IsAbleToRemove())
 	or (c:IsLocation(LOCATION_REMOVED) and c:IsAbleToDeck()))
+end
+function s.e1efil(c,e)
+	return c:IsAbleToDeck()
 	and c~=e:GetHandler()
 end
 function s.e1sfil(e,tp,mg)
-	return Duel.GetMatchingGroup(Fusion.IsMonsterFilter(Card.IsAbleToDeck),tp,LOCATION_REMOVED,0,nil)
+	return Duel.GetMatchingGroup(Fusion.IsMonsterFilter(s.e1efil),tp,LOCATION_REMOVED,0,nil)
 end
 function s.e1stgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
