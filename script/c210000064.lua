@@ -153,11 +153,13 @@ function s.e5evt(e,tp)
 
 			if not c:IsHasEffect(EFFECT_REVERSE_UPDATE) then
 				local e5b2=Effect.CreateEffect(c)
-				e5b2:SetType(EFFECT_TYPE_SINGLE)
-				e5b2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK)
+				e5b2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+				e5b2:SetCode(EVENT_PHASE+PHASE_BATTLE_START)
 				e5b2:SetRange(LOCATION_MZONE)
-				e5b2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CLIENT_HINT)
+				e5b2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+				e5b2:SetCountLimit(1)
 				e5b2:SetCondition(s.e5bcon)
+				e5b2:SetOperation(s.e5bevt)
 				e5b2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END+RESET_SELF_TURN)
 				c:RegisterEffect(e5b2)
 			end
@@ -169,4 +171,16 @@ function s.e5bcon(e,tp)
 
 	return c:GetTurnID()~=Duel.GetTurnCount()
 	and tp==Duel.GetTurnPlayer()
+end
+function s.e5bevt(e)
+	local c=e:GetHandler()
+	Debug.ShowHint("CALLED")
+	if c:IsRelateToEffect(e) then
+		local e5b3=Effect.CreateEffect(c)
+		e5b3:SetType(EFFECT_TYPE_SINGLE)
+		e5b3:SetCode(EFFECT_CANNOT_DIRECT_ATTACK)
+		e5b3:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CLIENT_HINT)
+		e5b3:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE)
+		c:RegisterEffect(e5b3)
+	end
 end
