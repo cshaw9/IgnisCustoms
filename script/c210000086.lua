@@ -109,7 +109,7 @@ function s.e3tgt(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,5)
 end
 function s.e3evt(e,tp)
-	if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.e3fil),0,LOCATION_GRAVE,LOCATION_GRAVE,5,nil)<5 then return end
+	if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.e3fil),0,LOCATION_GRAVE,LOCATION_GRAVE,5,nil) then return end
 
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.e3fil),tp,LOCATION_GRAVE,LOCATION_GRAVE,5,5,nil)
 	Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
