@@ -21,6 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	-- Each time a card(s) is banished, place 1 Banishite Counter on this card (max. 5).
 	local e3=Effect.CreateEffect(c)
+	e3:SetDescription(aux.Stringid(id,0))
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e3:SetCode(EVENT_REMOVE)
 	e3:SetRange(LOCATION_FZONE)
@@ -33,7 +34,7 @@ function s.initial_effect(c)
 	shuffle those targets into the Deck/Extra Deck.
 	]]--
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,0))
+	e4:SetDescription(aux.Stringid(id,1))
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_FZONE)
 	e4:SetCountLimit(1,(id+0))
@@ -47,7 +48,7 @@ function s.initial_effect(c)
 	You can remove 1 Banishite Counter from this card; draw 1 card.
 	]]--
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,1))
+	e5:SetDescription(aux.Stringid(id,2))
 	e5:SetCategory(CATEGORY_DRAW)
 	e5:SetType(EFFECT_TYPE_IGNITION)
 	e5:SetRange(LOCATION_FZONE)
