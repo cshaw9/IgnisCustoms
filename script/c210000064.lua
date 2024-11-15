@@ -152,15 +152,13 @@ function s.e5evt(e,tp)
 			c:RegisterEffect(e5b1)
 
 			if not c:IsHasEffect(EFFECT_REVERSE_UPDATE) then
-				Debug.ShowHint("CALLED1")
+				local e5b2=Effect.CreateEffect(c)
+				e5b2:SetType(EFFECT_TYPE_SINGLE)
+				e5b2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK)
+				e5b2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CLIENT_HINT)
+				e5b2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE+RESET_SELF_TURN)
+				c:RegisterEffect(e5b2)
 			end
-			Debug.ShowHint("CALLED2")
-			local e5b2=Effect.CreateEffect(c)
-			e5b2:SetType(EFFECT_TYPE_SINGLE)
-			e5b2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK)
-			e5b2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_CLIENT_HINT)
-			e5b2:SetReset(RESET_EVENT+RESETS_STANDARD) --+RESET_PHASE+PHASE_BATTLE+RESET_SELF_TURN
-			c:RegisterEffect(e5b2)
 		end
 	end
 end
