@@ -27,23 +27,20 @@ function s.e1con(e)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function s.e1tgt(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then
-		return Duel.IsPlayerCanDraw(tp,5)
-		and Duel.IsPlayerCanDraw(1-tp,5)
-	end
+	if chk==0 then true end
 
 	local ct=Duel.GetFieldGroupCount(tp,LOCATION_HAND+LOCATION_ONFIELD,LOCATION_HAND+LOCATION_ONFIELD)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,PLAYER_ALL,ct)
+	Duel.SetPossibleOperationInfo(0,CATEGORY_DRAW,nil,0,tp,5)
+end
+function s.e1fil(c)
+	return c:IsAbleToRemove()
 end
 function s.e1evt(e,tp)
 	local c=e:GetHandler()
-	local g=Duel.GetFieldGroup(tp,LOCATION_HAND+LOCATION_ONFIELD,LOCATION_HAND+LOCATION_ONFIELD)
+	local g=Duel.GetFieldGroup(tp,LOCATION_HAND+LOCATION_ONFIELD,LOCATION_HAND+LOCATION_ONFIELD):Filter(s.e1fil, nil)
 
 	if Duel.Remove(g,POS_FACEUP,REASON_EFFECT)>0 then
-		Duel.BreakEffect()
-		Duel.Draw(tp,5,REASON_EFFECT)
-		Duel.Draw(1-tp,5,REASON_EFFECT)
-
 		--[[
 		[HOPT]
 		During your next Standby Phase after this card was banished by this effect:
@@ -56,11 +53,19 @@ function s.e1evt(e,tp)
 			e2:SetCode(EVENT_PHASE+PHASE_STANDBY)
 			e2:SetRange(LOCATION_REMOVED)
 			e2:SetHintTiming(0,TIMING_STANDBY_PHASE)
+			e2:SetCountLimit(1,(id+1))
 			e2:SetCondition(s.e2con)
 			e2:SetTarget(s.e2tgt)
 			e2:SetOperation(s.e2evt)
 			e2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_STANDBY+RESET_SELF_TURN)
 			c:RegisterEffect(e2)
+		end
+
+		Duel.BreakEffect()
+
+		if Duel.IsPlayerCanDraw(tp,5) and Duel.IsPlayerCanDraw(1-tp,5) then
+			Duel.Draw(tp,5,REASON_EFFECT)
+			Duel.Draw(1-tp,5,REASON_EFFECT)
 		end
 	end
 
